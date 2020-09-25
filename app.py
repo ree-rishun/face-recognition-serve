@@ -30,7 +30,7 @@ app.config['RESULT_FOLDER'] = RESULT_FOLDER
 
 
 # 拡張子の確認
-def allwed_file(filename):
+def allowed_file(filename):
     # .があるかどうかのチェックと、拡張子の確認
     # OKなら１、だめなら0
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
@@ -79,14 +79,13 @@ def uploads_file():
             return 'file name is null'
 
         # ファイルのチェック
-        if file and allwed_file(file.filename):
+        if file and allowed_file(file.filename):
             # 危険な文字を削除（サニタイズ処理）
             filename = secure_filename(file.filename)
             # ファイルの保存
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             # 画像を変換
             convert_img, people = face_recognition(filename)
-
             # JSONを返す
             return jsonify('{ \"img\": \"' + str(convert_img) + '\", \"people\": \"' + str(people) + '\"}')
     return 'error'
