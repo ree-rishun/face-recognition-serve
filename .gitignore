@@ -1,4 +1,6 @@
 venv
-src/face/*
-src/upload/*
+src/face/*.png
+src/upload/*.jpg
+src/upload/*.gif
+src/upload/*.png
 lib

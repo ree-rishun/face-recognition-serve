@@ -1,5 +1,4 @@
 import os
-
 # flaskのインポート
 from flask import *
 # ファイル名をチェックする関数
